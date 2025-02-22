@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joshikaran (Joshi Felix) - Python Developer | AI & ML Engineer</title>
+  <link rel="stylesheet" href="web.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Joshikaran (Joshi Felix)</h1>
+      <h2>Python Developer | AI & ML Engineer</h2>
+      <p class="tagline">Building intelligent solutions to solve real-world problems.</p>
+    </header>
+
+    <section class="about">
+      <h3>About Me</h3>
+      <p>
+        🔹 Highly skilled Python Developer & AI/ML Engineer with a strong foundation in software development, machine learning, and automation. Adept at building end-to-end solutions, optimizing performance, and solving real-world problems with AI and data-driven approaches.
+      </p>
+    </section>
+
+    <section class="strengths">
+      <h3>Key Strengths</h3>
+      <ul>
+        <li>✅ Full-Stack Python Development – Expertise in Flask, FastAPI, and backend API design.</li>
+        <li>✅ Machine Learning & AI – Experience in ML models, RAG, LangChain, and AI-powered automation.</li>
+        <li>✅ Data Engineering – Handling social media data, SQL databases, and Redis caching.</li>
+        <li>✅ Problem-Solving & Optimization – Developed predictive maintenance and anomaly detection models.</li>
+        <li>✅ Project Leadership – Delivered multiple full-fledged applications within tight deadlines.</li>
+      </ul>
+    </section>
+
+    <section class="experience">
+      <h3>Work Experience</h3>
+      <div class="job">
+        <h4>Python Developer | Locobuzz Solutions Pvt. Ltd. <span>(Mar 2024 - Jun 2024)</span></h4>
+        <ul>
+          <li>Collected and processed social media data, pipelining it into databases.</li>
+          <li>Fixed client-reported bugs in analytics applications.</li>
+          <li>Optimized API performance and enhanced system efficiency.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <h4>AI/ML Engineer | Unified Mentor (Virtual) <span>(Nov 2024 - Dec 2024)</span></h4>
+        <ul>
+          <li>Built an <strong>Animal Image Classification App</strong> using Logistic Regression & Random Forest.</li>
+          <li>Developed a <strong>Mobile Phone Price Prediction App</strong> using ML models.</li>
+          <li>Completed AI projects within 4 days using ChatGPT & Copilot for enhanced productivity.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="projects">
+      <h3>Notable Projects</h3>
+      <div class="project">
+        <h4>AI-Powered PLC System (Ongoing)</h4>
+        <p>Building an AI-powered PLC system capable of predictive maintenance, cycle detection, and anomaly handling. Working towards a self-learning AI-PLC that autonomously optimizes factory processes.</p>
+      </div>
+      <div class="project">
+        <h4>Fundoo Notes <span>(Feb 2024 - Mar 2024)</span></h4>
+        <p>Designed CRUD functionalities for a note-taking app with collaboration features. Optimized API performance using Flask-Limiter and Redis caching.</p>
+      </div>
+      <div class="project">
+        <h4>Chatbot Using LLM (RAG & LangChain) <span>(Jan 2025)</span></h4>
+        <p>Built an AI chatbot leveraging RAG & LangChain for contextual understanding and better responses.</p>
+      </div>
+      <div class="project">
+        <h4>PCB Defect Detection (YOLO V11) <span>(Oct 2024 - Mar 2024)</span></h4>
+        <p>Developed an AI model for real-time PCB fault detection with a user-friendly web interface.</p>
+      </div>
+    </section>
+
+    <section class="skills">
+      <h3>Skills & Expertise</h3>
+      <ul>
+        <li><strong>Programming Languages:</strong> Python, SQL, JavaScript</li>
+        <li><strong>Frameworks & Libraries:</strong> Flask, FastAPI, TensorFlow, Keras, RAG, LangChain</li>
+        <li><strong>AI/ML & Data Science:</strong> Machine Learning, Predictive Modeling, Anomaly Detection</li>
+        <li><strong>Tools & Technologies:</strong> Redis, Git/GitHub, Docker, Jupyter Notebook</li>
+        <li><strong>Other Skills:</strong> OOPs, DSA, API Development, Data Pipelines</li>
+      </ul>
+    </section>
+
+    <section class="certifications">
+      <h3>Certifications</h3>
+      <ul>
+        <li>IBM – Gen AI Applications Using LangChain & RAG | <a href="https://coursera.org/share/d93feb16736f6d44f79e85fc0592fe9d" target="_blank">Coursera</a></li>
+        <li>Machine Learning Internship | Unified Mentor</li>
+        <li>IBM Full Stack Developer Capstone V2 (100% Grade)</li>
+        <li>Full Stack Application Development Capstone Project | <a href="https://www.credly.com/earner/earned/badge/ae3022a6-f949-42b3-900c-5f03c30fb8ae" target="_blank">Credly</a></li>
+      </ul>
+    </section>
+
+    <section class="goals">
+      <h3>Career Goals & Aspirations</h3>
+      <ul>
+        <li>Seeking remote job opportunities in AI, ML, and software development abroad.</li>
+        <li>Planning to build a cloud-based company with fully online client interactions.</li>
+        <li>Aiming to create top-tier AI solutions that redefine automation and optimization.</li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>
