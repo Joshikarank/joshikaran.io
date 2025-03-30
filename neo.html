@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joshikaran | 3D Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00f0ff;
+      --secondary: #ff00e4;
+      --dark: #0a0a1a;
+      --light: #f0f0ff;
+      --accent: #ff5e00;
+      --glass: rgba(10, 10, 30, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      perspective: 1000px;
+    }
+
+    /* 3D Floating Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      transform-style: preserve-3d;
+    }
+
+    .nav-logo {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transform-style: preserve-3d;
+    }
+
+    .logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+      transform: translateZ(30px);
+    }
+
+    .logo-pulse {
+      width: 15px;
+      height: 15px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+      animation: pulse 2s infinite;
+      transform: translateZ(20px);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95) translateZ(20px); }
+      50% { transform: scale(1.1) translateZ(20px); }
+      100% { transform: scale(0.95) translateZ(20px); }
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      transform-style: preserve-3d;
+    }
+
+    nav ul li {
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    nav ul li a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 1rem;
+      transform-style: preserve-3d;
+    }
+
+    nav ul li a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+      transform: translateZ(-10px);
+    }
+
+    nav ul li a:hover::before {
+      width: 100%;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary);
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+
+    /* 3D Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+      animation: rotate 30s linear infinite;
+      z-index: -1;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg) translateZ(-100px); }
+      to { transform: rotate(360deg) translateZ(-100px); }
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      padding: 2rem;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    /* 3D Name Effect */
+    .name-3d {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      position: relative;
+      transform-style: preserve-3d;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateZ(50px) rotateX(0deg) rotateY(0deg); }
+      50% { transform: translateY(-20px) translateZ(50px) rotateX(5deg) rotateY(5deg); }
+    }
+
+    .name-3d::after {
+      content: 'Joshikaran';
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0, 240, 255, 0.5);
+      z-index: -1;
+      transform: translateZ(-30px);
+    }
+
+    .running-text {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+      transform-style: preserve-3d;
+    }
+
+    .running-text::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      animation: runningLine 3s linear infinite;
+      transform: translateZ(-10px);
+    }
+
+    @keyframes runningLine {
+      0% { transform: translateX(-100%) translateZ(-10px); }
+      100% { transform: translateX(100%) translateZ(-10px); }
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      transform-style: preserve-3d;
+    }
+
+    .social-links a {
+      color: var(--light);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-5px) translateZ(10px);
+      text-shadow: 0 0 15px var(--primary);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: var(--dark);
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
+      transform: translateZ(-5px);
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) translateZ(10px);
+      box-shadow: 0 15px 30px rgba(0, 240, 255, 0.4);
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateZ(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--light);
+      opacity: 0.8;
+      font-size: 0.9rem;
+      animation: bounce 2s infinite;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%) translateZ(20px); }
+      40% { transform: translateY(-20px) translateX(-50%) translateZ(20px); }
+      60% { transform: translateY(-10px) translateX(-50%) translateZ(20px); }
+    }
+
+    /* 3D Sections */
+    section {
+      padding: 5rem 10%;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.05), transparent);
+      pointer-events: none;
+      z-index: -1;
+      transform: translateZ(-50px);
+    }
+
+    section h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      background: linear-gradient(45deg, var(--primary), var(--light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%) translateZ(-10px);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    /* 3D About Section */
+    .about-content {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+    }
+
+    .about-content:hover {
+      transform: translateY(-10px) translateZ(20px);
+      box-shadow: 0 30px 60px rgba(0, 240, 255, 0.2);
+    }
+
+    .about-text {
+      flex: 1;
+      transform-style: preserve-3d;
+    }
+
+    .about-text p {
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      transform: translateZ(10px);
+    }
+
+    .education h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      transform: translateZ(15px);
+    }
+
+    .education p {
+      margin-bottom: 0.5rem;
+      transform: translateZ(10px);
+    }
+
+    .education p strong {
+      color: var(--light);
+      font-weight: 600;
+    }
+
+    .skills {
+      flex: 1;
+      transform-style: preserve-3d;
+    }
+
+    .skills h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      transform: translateZ(15px);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      transform-style: preserve-3d;
+    }
+
+    .skill-category {
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px) translateZ(10px);
+      box-shadow: 0 10px 20px rgba(0, 240, 255, 0.1);
+      border-color: var(--primary);
+    }
+
+    .skill-category h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--light);
+      transform: translateZ(10px);
+    }
+
+    .skill-category ul {
+      list-style: none;
+      transform-style: preserve-3d;
+    }
+
+    .skill-category li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+      transform: translateZ(5px);
+    }
+
+    .skill-category li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+    }
+
+    /* 3D Experience Card */
+    .experience-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+      margin-top: 2rem;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-10px) translateZ(20px);
+      box-shadow: 0 30px 60px rgba(0, 240, 255, 0.2);
+      border-color: var(--primary);
+    }
+
+    .exp-header {
+      margin-bottom: 2rem;
+      transform-style: preserve-3d;
+    }
+
+    .exp-header h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      transform: translateZ(15px);
+    }
+
+    .exp-header h4 {
+      font-size: 1.3rem;
+      color: var(--light);
+      margin-bottom: 0.5rem;
+      transform: translateZ(10px);
+    }
+
+    .exp-meta {
+      display: flex;
+      gap: 2rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      transform: translateZ(5px);
+    }
+
+    .exp-details {
+      list-style: none;
+      transform-style: preserve-3d;
+    }
+
+    .exp-details li {
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+      position: relative;
+      line-height: 1.6;
+      transform: translateZ(10px);
+    }
+
+    .exp-details li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* 3D Project Cards */
+    .projects {
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .project-card {
+      display: flex;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px) translateZ(20px);
+      box-shadow: 0 30px 60px rgba(0, 240, 255, 0.3);
+      border-color: var(--primary);
+    }
+
+    .project-image {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      transform-style: preserve-3d;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05) translateZ(10px);
+    }
+
+    .project-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 228, 0.1));
+      z-index: 1;
+      transform: translateZ(5px);
+    }
+
+    .project-content {
+      flex: 1;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform-style: preserve-3d;
+    }
+
+    .project-details h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      transform: translateZ(15px);
+    }
+
+    .project-details p {
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      transform: translateZ(10px);
+    }
+
+    .project-stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      transform-style: preserve-3d;
+    }
+
+    .stat {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 1rem;
+      flex: 1;
+      transition: all 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    .stat:hover {
+      transform: translateY(-5px) translateZ(10px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 20px rgba(0, 240, 255, 0.1);
+    }
+
+    .stat-value {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      transform: translateZ(10px);
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      transform: translateZ(5px);
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+      transform-style: preserve-3d;
+    }
+
+    .project-tech span {
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      transform: translateZ(5px);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+      transform-style: preserve-3d;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: var(--dark);
+    }
+
+    .project-video {
+      margin-top: 2rem;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+    }
+
+    .project-video:hover {
+      transform: translateY(-5px) translateZ(10px);
+      box-shadow: 0 15px 40px rgba(0, 240, 255, 0.3);
+    }
+
+    .project-video iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+
+    /* 3D Contact Section */
+    .contact-container {
+      display: flex;
+      gap: 3rem;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+    }
+
+    .contact-container:hover {
+      transform: translateY(-10px) translateZ(20px);
+      box-shadow: 0 30px 60px rgba(0, 240, 255, 0.2);
+    }
+
+    .contact-info {
+      flex: 1;
+      transform-style: preserve-3d;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      transform-style: preserve-3d;
+    }
+
+    .info-item i {
+      font-size: 1.2rem;
+      color: var(--primary);
+      transform: translateZ(10px);
+    }
+
+    .info-item span {
+      transform: translateZ(5px);
+    }
+
+    .contact-social {
+      margin-top: 2rem;
+      transform-style: preserve-3d;
+    }
+
+    .contact-form {
+      flex: 1;
+      transform-style: preserve-3d;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      transform-style: preserve-3d;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: var(--light);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+      transform: translateZ(10px);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* 3D Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border-top: 1px solid var(--glass-border);
+      transform-style: preserve-3d;
+    }
+
+    footer p {
+      transform: translateZ(10px);
+    }
+
+    /* 3D Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      transform-style: preserve-3d;
+    }
+
+    .toggle-input {
+      display: none;
+    }
+
+    .toggle-label {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    .toggle-label i {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) translateZ(10px);
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-label .fa-sun {
+      left: 8px;
+      color: var(--accent);
+    }
+
+    .toggle-label .fa-moon {
+      right: 8px;
+      color: var(--primary);
+    }
+
+    .toggle-ball {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 26px;
+      height: 26px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      transform: translateZ(15px);
+    }
+
+    .toggle-input:checked + .toggle-label .toggle-ball {
+      transform: translateX(30px) translateZ(15px);
+    }
+
+    /* 3D Particle Background */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transform-style: preserve-3d;
+    }
+
+    /* 3D Scroll Animations */
+    [data-aos] {
+      transform-style: preserve-3d;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .name-3d {
+        font-size: 4.5rem;
+      }
+      
+      .about-content,
+      .contact-container {
+        flex-direction: column;
+      }
+      
+      .project-card {
+        flex-direction: column;
+      }
+      
+      .project-image {
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      
+      .name-3d {
+        font-size: 3.5rem;
+      }
+      
+      .running-text {
+        font-size: 1.5rem;
+      }
+      
+      section {
+        padding: 3rem 5%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .name-3d {
+        font-size: 2.5rem;
+      }
+      
+      .running-text {
+        font-size: 1.2rem;
+      }
+      
+      section h2 {
+        font-size: 2rem;
+      }
+      
+      .project-stats {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 3D Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- 3D Theme Toggle -->
+  <div class="theme-toggle">
+    <input type="checkbox" id="toggle" class="toggle-input">
+    <label for="toggle" class="toggle-label">
+      <i class="fas fa-sun"></i>
+      <i class="fas fa-moon"></i>
+      <span class="toggle-ball"></span>
+    </label>
+  </div>
+
+  <!-- 3D Navigation -->
+  <nav>
+    <div class="nav-logo">
+      <span class="logo-text">JK</span>
+      <div class="logo-pulse"></div>
+    </div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- 3D Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1 class="name-3d">Joshikaran</h1>
+      <h2 class="running-text">AI Engineer & Full-Stack Developer</h2>
+      <div class="social-links">
+        <a href="https://github.com/Joshikarank" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/joshi-karan-4993bb285" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
+    <div class="scroll-down">Scroll Down <i class="fas fa-chevron-down"></i></div>
+  </section>
+
+  <!-- 3D About Section -->
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>AI engineer with hands-on experience in building predictive systems and full-stack applications. Specialized in developing data-driven solutions using Python, JavaScript, blockchain and cloud technologies.</p>
+        <div class="education">
+          <h3>Education</h3>
+          <p><strong>SRM University of Science and Technology</strong></p>
+          <p>B.Tech in Computer Science (AI/ML Specialization)</p>
+          <p>Sep 2020 – June 2024</p>
+        </div>
+      </div>
+      <div class="skills">
+        <h3>Technical Skills</h3>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h4>Programming Languages</h4>
+            <ul>
+              <li>Python</li>
+              <li>JavaScript</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Frameworks</h4>
+            <ul>
+              <li>Django</li>
+              <li>FastAPI</li>
+              <li>Node.js</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>ML/DL Libraries</h4>
+            <ul>
+              <li>TensorFlow</li>
+              <li>PyTorch</li>
+              <li>Scikit-learn</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D Experience Section -->
+  <section id="experience" class="experience">
+    <h2>Experience</h2>
+    <div class="experience-card">
+      <div class="exp-header">
+        <h3>Python Developer Intern</h3>
+        <h4>Locobuzz Solutions, Private Limited</h4>
+        <div class="exp-meta">
+          <span>Mar 2024 – June 2024</span>
+          <span>Mumbai</span>
+        </div>
+      </div>
+      <ul class="exp-details">
+        <li>Engineered TikTok data retrieval service that processed 5,000+ daily API calls, reducing manual data collection time by 70%</li>
+        <li>Automated Amazon/Flipkart review scraping system using Scrapy that collected 50K+ product reviews with 95% accuracy</li>
+        <li>Implemented share-link expiration feature that improved platform security by preventing 100% of expired link accesses</li>
+        <li>Fixed timezone discrepancies affecting 1,200+ active users, enhancing dashboard reliability</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3D Projects Section -->
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+
+    <div class="project-card">
+      <div class="project-image">
+        <img src="buy in dash.png" alt="Crypto Trading Simulator">
+      </div>
+
+      <div class="project-content">
+        <div class="project-details">
+          <h3>AI-Powered Crypto Trading Simulator</h3>
+          <p>Developed an automated crypto trading platform using AI, which allows users to simulate live trading scenarios and manage portfolios with real-time market predictions.</p>
+
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">78%</span>
+              <span class="stat-label">Prediction Accuracy</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">2M+</span>
+              <span class="stat-label">Data Points</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">&lt;500ms</span>
+              <span class="stat-label">Latency</span>
+            </div>
+          </div>
+
+          <div class="project-tech">
+            <span>Python/Flask</span>
+            <span>Node.js</span>
+            <span>MongoDB</span>
+            <span>Mistral 2</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://github.com/Joshikarank" class="btn" target="_blank">View Code</a>
+            <a href="https://www.youtube.com/watch?v=Myz-V5QSbmA" class="btn btn-secondary" target="_blank">Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-video">
+          <iframe width="100%" height="315"
+            src="https://www.youtube.com/embed/Myz-V5QSbmA?si=WfSiL_-wwVXMHq7B"
+            title="AI-Powered Crypto Trading Simulator Demo"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="info-item">
+          <i class="fas fa-phone"></i>
+          <span>+91 6383657238</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <span>joshikarank2002@gmail.com</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Chennai, India (Open to Remote/Hybrid)</span>
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/Joshikarank" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/joshi-karan-4993bb285" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      <form id="contact-form" class="contact-form">
+        <div class="form-group">
+          <input type="text" id="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+          <textarea id="message" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 3D Footer -->
+  <footer>
+    <p>&copy; 2024 Joshikaran K. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // 3D Particle Background
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#00f0ff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#00f0ff",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+
+
+    // Theme Toggle
+    const toggle = document.getElementById('toggle');
+    toggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-theme');
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+
+
+    // Form Submission
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Message sent successfully!');
+        contactForm.reset();
+      });
+    }
+  </script>
+</body>
+</html>
